@@ -19,9 +19,9 @@ totalSale = sale1 + sale2 + sale3
 print(f'1분기 전체 매출 : {totalSale}')
 
 # 1분기 수익 계산
-Sales = int(input('1분기 매출 : '))
+sales = int(input('1분기 매출 : '))
 buys = int(input('1분기 매입 : '))
-profit = Sales - buys
+profit = sales - buys
 print(f'1분기 수익 : {profit} 원')
 
 # 방의 넓이 구하기
@@ -62,3 +62,42 @@ print(f'''
 infectors = 2 ** 30
 
 print(f'전염병 예상 감염자 수 : {infectors}')
+
+
+# 할당 연산자
+
+# 논리 연산자
+
+# 논리 연산자 단축식 평가
+
+# 삼항 연산자
+# 조건문을 한 줄로 표현할 수 있는 연산자
+# 조건식이 참일 때의 값 if 조건식 else 거짓일 때의 값
+
+myScore = 75
+result = '합격!' if myScore >= 90 else '불합격!'
+
+print(result)
+
+# 복리 계산기
+money = 5000000
+interestRate = 0.05
+years = 5
+total = int(money * (interestRate + 1) ** years)
+print(f'5년 후 총 수령액 : {total} 원')
+
+# 범퍼카 탑승
+height = int(input('어린이의 신장을 입력하세요.'))
+result = 'True' if height >= 120 else 'False'
+print(result)
+
+# 범퍼카 탑승 가능 판별
+height = int(input('어린이의 신장을 입력하세요.'))
+result = 'True' if height >= 120 and height <= 150 else 'False'
+print(result)
+
+# 적자/흑자 판별
+sales = int(input('수입을 입력하세요: '))
+buys = int(input('지출을 입력하세요: '))
+result = '흑자' if sales > buys else '적자'
+print(result)
