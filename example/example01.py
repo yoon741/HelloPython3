@@ -53,24 +53,48 @@ print(f'''내일 날씨 예보입니다.
 rstrName = '음식나라'
 menu1 = '소주'
 menu2 = '너나치킨'
-m1price = 3000
-m2price = 12000
+soju = 3000
+chiken = 12000
 money = 50000
 date = '2014. 07. 07 14:35:24'
 
 print([ rstrName ])
 print('----------------------')
-print(menu1, '   ', 2, '     ', m1price * 2)
-print(menu2, '', 1, '     ', m2price * 1)
+print(menu1, '   ', 2, '     ', soju * 2)
+print(menu2, '', 1, '     ', chiken * 1)
 print('----------------------')
-print('과세합계', '        ', round((m1price * 2 + m2price * 1) / 10 * 9))
-print('부가세', '          ', round((m1price * 2 + m2price * 1) / 10))
+print('과세합계', '        ', round((soju * 2 + chiken * 1) / 10 * 9))
+print('부가세', '          ', round((soju * 2 + chiken * 1) / 10))
 print('----------------------')
-print('총합계', '          ', round(m1price * 2 + m2price * 1))
+print('총합계', '          ', round(soju * 2 + chiken * 1))
 print('받은금액', '        ', money)
-print('받은금액', '        ', money - (m1price * 2 + m2price * 1))
+print('받은금액', '        ', money - (soju * 2 + chiken * 1))
 print('----------------------')
 print(date)
+
+soju = 2
+chiken = 1
+total = (soju * 3000) + (chiken * 12000)
+vat = total * (10/110)  # 부가세 = 합계금액 * (10 / 110)
+supply = total - (100/110) # 공급가액 = 합계금액 * (100 / 110)
+paid = 50000
+charge = paid - total
+
+print(f'''
+[ 음식나라 ]
+----------------------
+소주\t\t{soju}\t\t{soju * 3000}
+너나치킨\t{chiken}\t\t{chiken * 12000}
+----------------------
+과세합계\t\t\t{int(supply)}
+부가세\t\t\t{int(vat)}
+----------------------
+총합계\t\t\t{total}
+받은금액\t\t\t{paid}
+잔돈\t\t\t\t{charge}
+----------------------
+{date}
+''')
 
 # 3
 # 다음중 파이썬 변수로 사용 가능한 것은 무엇인지 서술하여라.
@@ -154,3 +178,5 @@ def print_gugudan(dan):
 # 7단 출력
 print_gugudan(7)
 print_gugudan(3)
+
+
