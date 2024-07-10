@@ -173,8 +173,8 @@ print(f'''
 
 # gpt...
 def print_gugudan(dan):
-      for i in range(1, 10):
-            print(f"{dan} * {i} = {dan * i}")
+for i in range(1, 10):
+print(f"{dan} * {i} = {dan * i}")
 # 7단 출력
 print_gugudan(7)
 print_gugudan(3)
