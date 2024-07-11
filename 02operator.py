@@ -63,7 +63,6 @@ infectors = 2 ** 30
 
 print(f'전염병 예상 감염자 수 : {infectors}')
 
-
 # 할당 연산자
 
 # 논리 연산자
@@ -80,6 +79,17 @@ result = '합격!' if myScore >= 90 else '불합격!'
 print(result)
 
 # 복리 계산기
+# 일년에 500만원씩 5년간, 연 5%
+money = 5_000_000
+rate = 0.05
+money = money + (money * rate)
+money = money + (money * rate)
+money = money + (money * rate)
+money = money + (money * rate)
+money = money + (money * rate)
+print(f'5년 후 총 수령액 : {int(money):,} 원')
+
+# -------다른 방식
 money = 5000000
 interestRate = 0.05
 years = 5
@@ -87,17 +97,27 @@ total = int(money * (interestRate + 1) ** years)
 print(f'5년 후 총 수령액 : {total} 원')
 
 # 범퍼카 탑승
-height = int(input('어린이의 신장을 입력하세요.'))
-result = 'True' if height >= 120 else 'False'
+#if문으로 작성
+child = int(input('어린이의 신장을 입력하세요.'))
+isRide = 'True' if (child >= 120) else 'False'
 print(result)
+# isRide로 작성
+child = int(input('어린이의 신장을 입력하세요.'))
+isRide = (child >= 120)
+print(f'{isRide}')
 
 # 범퍼카 탑승 가능 판별
+#if문으로 작성
 height = int(input('어린이의 신장을 입력하세요.'))
-result = 'True' if height >= 120 and height <= 150 else 'False'
+result = 'True' if (height >= 120) and (height <= 150) else 'False'
 print(result)
+# isRide로 작성
+child = int(input('어린이의 신장을 입력하세요.'))
+isRide = (child >= 120) & (child < 170)
+print(f'{isRide}')
 
 # 적자/흑자 판별
-sales = int(input('수입을 입력하세요: '))
-buys = int(input('지출을 입력하세요: '))
-result = '흑자' if sales > buys else '적자'
+income = int(input('수입을 입력하세요: '))
+outcome = int(input('지출을 입력하세요: '))
+result = '흑자' if (income > outcome) else '적자'  #조건식은 괄호로 묶는 것이 보기 좋음
 print(result)
