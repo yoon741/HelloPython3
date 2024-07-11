@@ -38,11 +38,12 @@ print(dt.date.today())
 print(dt.datetime.now()
       .strftime('%Y년 %m월 %d일 %H시 %M분 %S초'))
 
-# operatormodule
 
-
+# operator module
 # 긴급재난 지원금 대상자 판별
 
 # 수온계산기
 
 # 자동차 주행거리
+
+# 컴퓨터 업무 수량 파악
