@@ -39,6 +39,7 @@ dan = input('1부터 9까지의 숫자를 입력하세요 : ')
 result = '잘못 입력하셨습니다!!'
 # if dan > 0 and dan <= 9:
 if (dan.isdigit()) and (0 < int(dan) <= 9):
+    dan = int(dan)
     result = f'{dan} x 1 = {dan * 1}\n'
     result += f'{dan} x 2 = {dan * 2}\n'
     result += f'{dan} x 3 = {dan * 3}\n'
@@ -81,4 +82,4 @@ elif (daytime == 'dawn') or (daytime == 'daybreak'): result = '점심시간 (12-
 
 print(f'{daytime} / {result}')
 
-# 나중에 이어서 하기로 
+# 나중에 이어서 하기로
