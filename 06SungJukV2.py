@@ -50,12 +50,10 @@ print(f'''
 이름 : {name1}, 국어 : {scoreK1}, 영어 : {scoreE1}, 수학 : {scoreMath1} : 99
 총점 : {tot1}, 평균: {avgScore:.1f}, 학점 : {grd}
 ''')
-
 print(f'''
 이름 : {name2}, 국어 : {scoreK2}, 영어 : {scoreE2}, 수학 : {scoreMath2} : 99
 총점 : {tot2}, 평균: {avgScore:.1f}, 학점 : {grd}
 ''')
-
 print(f'''
 이름 : {name3}, 국어 : {scoreK3}, 영어 : {scoreE3}, 수학 : {scoreMath3} : 99
 총점 : {tot3}, 평균: {avgScore:.1f}, 학점 : {grd}
