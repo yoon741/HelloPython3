@@ -59,3 +59,75 @@ print(len('Hello,World!!'))
 # 입력받은 글자 수 확인
 msg = input('메세지를 입력하세요 : ')
 print(f'입력받은 메세지 길이 : {len(msg)}')
+
+
+# -----------------------
+# 합격여부 판정프로그램
+exam = [55, 35, 40, 70, 65, 30]
+
+# 과락여부
+cntFail = 0
+for i in range(6):
+    if exam[i] < 40: cntFail += True
+
+# 평균
+sum = 0
+for i in range(6):
+    sum += exam[i]
+avg = sum / 6
+
+# 합격여부
+passed = '아쉽습니다. 불합격하셨습니다.'
+if cntFail < 1 and avg >= 60:
+    passed = '축하합니다!. 합격하셨습니다.'
+
+# 평가
+print(f'''
+40점 미만 과목수 : {cntFail}
+평균 점수 : {avg:.1f}
+결과 : {passed}
+''')
+
+
+# -----------------------
+# 혈액 보관 시스템
+bloods = []
+cntblood = [0,0,0,0]
+msg = '''헌혈해 주셔서 감사합니다. 헌혈하신 혈액형은?
+(A, B, AB, O) : '''
+
+for i in range(10):
+    bloods.append(input(msg))
+
+for i in range(10):
+    if bloods[i] == 'A': cntblood[0] += 1
+    elif bloods[i] == 'B': cntblood[1] += 1
+    elif bloods[i] == 'AB': cntblood[2] += 1
+    elif bloods[i] == 'O': cntblood[3] += 1
+
+
+line = '-' * 20
+# result = f'''
+# {line}
+# 혈액형 : 개수
+# {line}
+# A형 : {cntblood[0]}
+# B형 : {cntblood[1]}
+# AB형 : {cntblood[2]}
+# O형 : {cntblood[3]}
+# {line}
+# '''
+result = f'''
+{line}
+혈액형 : 개수
+{line}
+A형 : {bloods.count('A')}
+B형 : {bloods.count('B')}
+AB형 : {bloods.count('AB')}
+O형 : {bloods.count('O')}
+{line}
+'''
+print(result)
+
+
+# -----------------------
