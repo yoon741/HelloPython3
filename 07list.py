@@ -59,5 +59,3 @@ print(len('Hello,World!!'))
 # 입력받은 글자 수 확인
 msg = input('메세지를 입력하세요 : ')
 print(f'입력받은 메세지 길이 : {len(msg)}')
-
-#
