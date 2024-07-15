@@ -34,7 +34,7 @@ for i in range(3):
           '우' if (avgs[0] >= 80) else \
           '미' if (avgs[0] >= 70) else \
           '양' if (avgs[0] >= 60) else '가'
-grds.append(grd)
+    grds.append(grd)
 
 
 # 결과 출력
