@@ -174,25 +174,207 @@ print(grade)
 
 # ---예제---
 # 속도 위반 경고
+# 50이 넘으면 경고문구 출력, 50이 넘지 않으면 경고문구 미출력
+speedLimit = int(input('자동차의 현재 속도는 : '))
+
+warn = ''
+if speedLimit >= 50:
+    warn = '속도위반!!'
+
+print(warn)
+
 # 자동 온도 조절 장치
+tmp = int(input('기계 온도를 입력하세요. '))
+
+msg = '팬(Fan) 중지'
+if tmp >= 40:
+    msg = '팬(Fan) 가동'
+
+print(msg)
+
 # 자동 주문 시스템
+order = '''
+Good morning. Nice to meet you.
+Where are you from?
+Please select a number
+1.대한민국 2.USA 3.中國 '''
+
+msg = 'Would you like to order?'
+
+menu = int(input(order))
+
+if menu == 1:
+    msg = '주문하시겠어요?'
+elif menu == 3:
+    msg = '您要点菜吗?'
+
+print(msg)
+
+#--------
+# if order == 1:
+#     print('주문하시겠어요?')
+#elif order == 2:
+#     print('Would you like to order?')
+# elif order == 3:
+#     print('您要点菜吗?')
+# else:
+#     print('Would you like to order?')
 
 # 국가재난지원금 수령액 조회하기
-count = int(input('인원수를 입력하세요.'))
+family = int(input('인원수를 입력하세요.'))
 
-result = ''
-match count:
-    case 1: result = '400,000원 지원'
-    case 2: result = '600,000원 지원'
-    case 3: result = '800,000원 지원'
-    case _: result = '1,000,000원 지원'
+result = '1,000,000원 지원'
+if family == 1:
+    result = '400,000원 지원'
+elif family == 2:
+    result = '600,000원 지원'
+elif family == 3:
+    result = '800,000원 지원'
 
 print(result)
 
+#-----------
+# result = ''
+# match family:
+#    case 1: result = '400,000원 지원'
+#    case 2: result = '600,000원 지원'
+#    case 3: result = '800,000원 지원'
+#    case _: result = '1,000,000원 지원'
+
+# print(result)
+
 # 개선 된 BMI 지수 출력
+bmi = float(input('BMI 지수를 입력하세요 : '))
+
+result = '저체중입니다.'
+if bmi > 140: result = '고도비만입니다.'
+elif bmi > 120: result = '비만입니다.'
+elif bmi > 110: result = '과체중입니다.'
+elif bmi > 90: result = '정상체중입니다.'
+
+print(f'BMI 지수 : {bmi}, 평가 결과 : {result} 입니다.')
+
 # 버스 전용차로 단속
+msg1 = '''1.월~금, 2.토요일, 3.공휴일
+요일을 선택하세요.'''
+msg2 = '''
+버스 전용차로 단속 중입니다.'
+1.버스, 2.승용차
+차종을 선택하세요 : '''
+msg3 = '버스 전용차로 위반!!'
+msg4 = '버스입니다.'
+msg5 = '토요일 및 공휴일은 단속하지 않습니다.'
+
+dayweek = int(input(msg1))
+
+result = ''
+if dayweek ==1:                   # 평일여부 확인
+    carModel = int(input(msg2))
+    if carModel != 1:             # 차량 모델 확인
+        result = msg3
+    else:
+        result = msg4
+else:
+    result = msg5
+
+print(result)
+# ------------
+# day = int(input('''
+# 1.월~금, 2.토요일, 3.공휴일
+# 요일을 선택하세요.'''))
+# carModel = int(input('''
+# 버스 전용차로 단속 중입니다.
+# 1.버스, 2.승용차
+# 차종을 선택하세요. '''))
+
+# if day == 2:
+#     if carModel == 1:
+#         print('버스 전용차로 위반!!')
+#     else:
+#         print(carModel)
+# else:
+#     print('토요일 및 공휴일은 단속하지 않습니다.')
+
 # 마스크 구매 가능 요일 출력
+endBirthYear = int(input('출생연도 끝자리 입력  : '))
+age = int(input('만 나이 입력 : '))
+
+# result = '언제든지 구매가능합니다.'
+# if age <= 65:
+#     if endBirthYear == 1 or endBirthYear ==6:
+#         result = '월요일 구매 가능합니다.'
+#     elif endBirthYear == 2 or endBirthYear ==7:
+#         result = '화요일 구매 가능합니다.'
+#     elif endBirthYear == 3 or endBirthYear ==8:
+#         result = '수요일 구매 가능합니다.'
+#     elif endBirthYear == 4 or endBirthYear ==9:
+#         result = '목요일 구매 가능합니다.'
+#     elif endBirthYear == 5 or endBirthYear ==0:
+#         result = '금요일 구매 가능합니다.'
+
+result= ''
+match endBirthYear:
+   case 1|6: result = '월요일 구매 가능합니다.'
+   case 2|7: result = '화요일 구매 가능합니다.'
+   case 3|8: result = '수요일 구매 가능합니다.'
+   case 4|9: result = '목요일 구매 가능합니다.'
+   case 5|0: result = '금요일 구매 가능합니다.'
+
+print(result)
 
 # 차량 2부제
+from datetime import datetime
+
+msg1 = '오늘 입차 : 번호가 홀수인 차량'
+msg2 = '귀하의 차량은 입차 불가합니다.'
+
+carNumber = int(input('차량 번호 4자리를 입력하세요. '))
+#today = int(input('오늘 날짜를 입력하세요. '))
+today = datetime.today().day
+
+if today % 2 == 0:
+    msg1 = '오늘 입차 : 번호가 짝수인 차량'
+
+if today % 2 == carNumber % 2:
+    msg2 = '귀하의 차량은 입차 가능합니다.'
+
+print(f'''오늘 날짜 {today}일
+{msg1}
+{msg2}
+''')
+
 # 생존율 출력
+msg = '최초 장비를 사용하기까지 걸린 시간(초)을 입력하세요. '
+time = int(input(msg))
+
+result = '생존율 : 25% 미만'
+if time <= 60: result = '생존율 : 85%'
+elif time <= 120: result = '생존율 : 76%'
+elif time <= 180: result = '생존율 : 66%'
+elif time <= 240: result = '생존율 : 57%'
+elif time <= 300: result = '생존율 : 47%'
+elif time <= 360: result = '생존율 : 35%'
+
+print(result)
+
 # 전기 요금 계산기
+powerPrice = 0
+basePrice = 910
+unitPrice = 99.3
+
+powerAmount = int(input('전기 사용량을 입력하세요. '))
+
+if powerAmount > 400:
+    basePrice = 7300
+    unitPrice = 280.6
+elif powerAmount > 200:
+    basePrice = 1600
+    unitPrice = 187.9
+
+powerPrice = basePrice + (unitPrice * powerAmount)
+
+print(f'''
+    사용량 : {powerAmount:,} kwh
+    기본요금 : {basePrice:,} 원
+    단가 : {unitPrice:,} 원
+    ⚡전기 요금⚡ : {powerPrice:,} 원''')
