@@ -145,3 +145,41 @@ while True:
         print('로그인 실패! 횟수 초과!')
         break
 
+
+# 반복문 내 건너뛰기 : continue
+# for, while문 내에서 반복흐름을 일시적으로 넘기기 위해 사용
+
+# 1 ~ 10 사이 정수 중 홀수의 합 출력
+sum = 0
+
+for i in range(1, 10+1):
+    if i % 2 == 0: continue
+    sum += i
+
+print(sum)
+
+
+# 1 ~ 100 사이 정수의 합을 출력
+# 단, 3의 배수나 7의 배수는 제외
+# for문으로
+sum = 0
+
+for i in range(1, 100+1):
+    if i % 3 == 0 or i % 7 == 0: continue
+    sum += i
+
+print(sum)
+
+
+
+# while문으로
+sum = 0
+i = 0
+
+while i < 101:
+    i += 1
+    if i % 3 == 0 or i % 7 == 0: continue
+    sum += i
+
+print(sum)
+
