@@ -62,9 +62,26 @@ print(sum, i)
 # 1 ~ 100사이 정수중에서
 # 3과 8의 공배수와 최소 공배수를 출력
 # while로 작성
+result = ''
+
+for i in range(1, 100+1):
+    if i % 3 == 0 and i % 8 ==0:
+        result += f'{i} '
+
+print(result, f'[{3 * 8}]')
 
 
 # 삼각형 너비 계산하기
+limitArea = 150   # 반복 중단 삼각형 너비
+width = 2
+heigth = 3
+i = 1
+
+while True:
+    area = ((width * i) * (heigth * i)) / 2
+    if area > limitArea: break
+    print(f'삼각형 너비 : {width * i} / {heigth * i} = {area}')
+    i += 1
 
 
 
@@ -85,3 +102,46 @@ while i < 100:
     if i == 33 or i == 66 or i == 99 : jjak += ' 짝!'
     print(i, jjak)
     i += 1
+
+
+# 한빛역에서 동시에 9시에 6시까지
+# 운행하는 열차들이 교차하는 시간을 구해 열차 충돌 막기
+trainA = 10
+trainB = 25
+trainC = 30
+mins = 1
+
+
+while mins < 541:
+    if mins % 5 == 0:
+
+        if mins % trainA == 0 and mins % trainB == 0:
+            print(f'{9 + mins // 60:02d}시 {mins % 60:02d}분 : A - B 교차!')
+
+        elif mins % trainB == 0 and mins % trainC == 0:
+            print(f'{9 + mins // 60:02d}시 {mins % 60:02d}분 : B - C 교차!')
+
+        elif mins % trainC == 0 and mins % trainA == 0:
+            print(f'{9 + mins // 60:02d}시 {mins % 60:02d}분 : C - A 교차!')
+
+        elif mins % trainA == 0 and mins % trainB == 0 and mins % trainC == 0:
+            print(f'{9 + mins // 60:02d}시 {mins % 60:02d}분 : A - B - C 교차!')
+
+    mins += 1
+
+# 로그인 기능 만들기
+cntLogin = 1
+while True:
+    passwd = input('관리자 암호를 입력하세요. ')
+
+    if passwd == 'hanbitca':
+        print('로그인 되었습니다.')
+        break
+    else:
+        print('암호를 다시 확인하세요.')
+
+    if cntLogin < 5: cntLogin += 1
+    else:
+        print('로그인 실패! 횟수 초과!')
+        break
+
