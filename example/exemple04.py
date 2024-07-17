@@ -29,3 +29,57 @@ elif cardno[:1] == '5':
     elif cardno == '540926': result = '마스터카드 KB국민카드'
 
 print(f'{cardno} / {result}')
+
+
+# 16 개선하기 - 리스트/반복문/함수
+
+# price = int(input('계산할 돈을 입력하세요.'))
+# paid = int(input('받은 돈을 입력하세요.'))
+#
+# charge = paid - price
+#
+# units = [50000,10000,5000,1000,500,100,50,10]
+# charges = []
+#
+# for unit in units:
+#     charges.append(charge // unit)
+#     charge %= unit
+#
+# result = f'''
+# 금액 : {price:,} 원
+# 지불금액 : {paid:,} 원
+# 잔돈 : {(paid - price):,} 원
+# ------------------------
+# '''
+#
+# for idx, u in enumerate(units):
+#     result += f'{u}원 : {charges[idx]} 장/개\n'
+#
+# print(result)
+
+def comute_charge(price,  paid):
+    units = [50000, 10000, 5000, 1000, 500, 100, 50, 10]
+    charges = []
+
+    charge = paid - price
+    for unit in units:
+        charges.append(charge // unit)
+        charge %= unit
+
+    result = f'''
+금액 : {price:,} 원
+지불금액 : {paid:,} 원 
+잔돈 : {(paid - price):,} 원
+------------------------'''
+    for idx, u in enumerate(units):
+        result += f'{u}원 : {charges[idx]} 장/개\n'
+
+    print(result)
+
+comute_charge()
+
+# 잔돈 구하는 함수 호출 및 테스트
+price = int(input('지불해야 할 금액은?'))
+paid = int(input('받은 금액은?'))
+comute_charge(price, paid)
+
