@@ -56,3 +56,136 @@ for k, v in member.items():
     print(k, v)
 
 
+# 예제 
+
+# 중간고사 성적 관리 p.33
+# 시나리오 #1
+mids = {'C/C++':'A', 'Java':'B+', '모바일':'C',
+      '보안':'A+', '해킹':'F', '시스템':'C+'}
+print(mids)
+
+# 시나리오 #2
+print(f"Java : {mids['Java']}")
+print(f"시스템 : {mids['시스템']}")
+
+# 시나리오 #3
+mids['파이썬'] = 'A'
+mids['OS'] = 'A+'
+print(mids)
+
+# 시나리오 #4
+mids['Java'] = 'F'
+mids['시스템'] = 'A'
+print(mids)
+
+# 시나리오 #5
+for k, v in mids.items():
+    print(f'{k} : {v}')
+
+for k, v in mids.items():
+    print(k, '\t :  ', v)
+
+
+# 수학시험 프로그램 p.37
+quizs = []
+answers = []
+scores = []
+
+quizs = ['3+2', '5/2의 몫', '10-2', '10의2제곱x2',
+         '1-(10나누기4의 나머지)', '2의4제곱', '4/2']
+answers = [5,2,8,200,-1,16,2]
+scores = [3,5,3,5,5,3,3]
+myAnswers = []
+
+trueCount = 0
+falseCount = 0
+totalScore = 0
+
+# 문제풀고 내 정답 입력
+for i in range(len(quizs)):
+    print(f'문제 : {quizs[i]} ?')
+    myAnswers.append(int(input('정답을 입력하세요 : ')))
+
+# 문제 풀이 및 채점
+for i in range(len(answers)):
+    if answers[i] == myAnswers[i]:
+        trueCount+= 1
+        totalScore += scores[i]
+    else:
+        falseCount += 1
+
+# 결과 출력
+print(f'''
+{'-'*20}
+정답 개수: {trueCount}
+오답 개수: {falseCount}
+Total Score: {totalScore}
+{'-'*20}
+''')
+
+
+# 수학 시험 프로그램 2
+quizs = ( ('3+2',5, 3), ('5/2의 몫',2,5),
+          ('10-2',8,3), ('10의2제곱x2',200,5),
+          ('1-(10나누기4의 나머지)',-1,5),
+          ('2의4제곱',16,3), ('4/2',2,3) )     # 튜플 : 수정이 불가능하다
+myAnswers = []
+
+trueCount = 0
+falseCount = 0
+totalScore = 0
+
+# 문제풀고 내 정답 입력
+for q in quizs:
+    print(f'문제 : {q[0]} ?')
+    myAnswers.append(int(input('정답을 입력하세요 : ')))
+
+# 문제 풀이 및 채점
+# enumerate : 반복가능한 객체를 순회하면서,
+# 각 요소의 위치값(인덱스)와 값을 함께 반환하는 함수
+for idx, q in enumerate(quizs):
+    if q[1] == myAnswers[idx]:
+        trueCount+= 1
+        totalScore += q[2]
+    else:
+        falseCount += 1
+
+# 결과 출력
+print(f'''
+{'-'*20}
+정답 개수: {trueCount}
+오답 개수: {falseCount}
+Total Score: {totalScore}
+{'-'*20}
+''')
+
+# 로또 당첨 게임 
+from random import sample
+# 숫자입력받기
+lotto = []
+matchs = []
+
+# 숫자입력받기
+print('1부터 45까지의 정수 6개를 입력하세요. ')
+for i in range(6):
+    lotto.append(int(input(f'Number {i+1} : ')))
+
+# 로또 매직 넘버 생성
+magic = sample(range(1, 45+1), 6)
+
+# 당첨 여부 확인
+# for i in range(6):
+#     if lotto[i] in magic:
+#         matchs += 1
+
+for l in lotto:
+    if l in magic:
+        matchs.append(l)
+
+# 결과출력
+print(f'''
+이번주 로또 번호 {magic}
+내가 선택한 번호 {lotto}
+일치하는 숫자 : {matchs}
+''')
+
