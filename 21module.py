@@ -64,3 +64,40 @@ print(val)
 # pip install scikit-learn
 # pip install pymysql
 # pip install fastapi
+
+
+
+
+# 연습문제(함수 및 모듈 사용)
+
+# 단위 환산(convertUnit/readUnit/printUnits)
+
+import yoon.example as yex
+
+mm = yex.readUnit()
+units = yex.convertUnit(mm)
+yex.printUnits(units)
+
+# 할인된 상품 가격표 출력(discountPrice/readDiscount/printPrices)
+import yoon.example as yex
+
+rate = yex.readDisCount()
+dcprice = yex.discountPrice(rate)
+yex.printprice(dcprice, rate)
+
+# 주민번호 유효성 체크
+# 주민등록번호 유효성 검사 공식
+# 주민등록번호 앞 12자리에
+# 각각 2, 3, 4, 5, 6, 7, 8 ,9 ,2 ,3 ,4 ,5를 곱한 값을
+# 모두 더하고 그 결과값을 11로 나눈 나머지를 11에서 뺍니다.
+# 계산 결과값이 주민등록번호 마지막 숫자와 일치하면 유효!
+# 1 2 3 4 5 6 - 1 2 3 4 5 6 7
+# * * * * * *   * * * * * *
+# 2 3  4 5 6 7  8 9 2 3 4 5
+# 26+12+20+30+42+8+18+6+12+20+30
+# 11 - (206 % 11) = 3 ? 7
+# (checkJumin/readJumin/printJumin)
+
+import yoon.example as yex
+
+yex.checkJumin('1234561234567')
