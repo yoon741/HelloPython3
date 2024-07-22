@@ -61,3 +61,12 @@ def showOneEmp():
         result = (f'사원번호: {emp[0]}, 이름: {emp[1]}, 성: {emp[2]}, 이메일: {emp[3]}, 전화번호: {emp[4]} \n'
                   f'입사일: {emp[5]}, 직책: {emp[6]}, 월급: {emp[7]}, 커미션: {emp[8]}, 상사: {emp[9]}, 부서번호: {emp[10]}')
     print(result)
+
+#
+def removeEmp():
+    empid = input('삭제할 사원 번호은?')
+    result = '데이터가 존재하지 않아요!!'
+    cnt = empdao.deleteEmp(empid)
+    if cnt > 0:
+        result = f'{cnt}건의 데이터가 삭제됨!'
+    print(result)
