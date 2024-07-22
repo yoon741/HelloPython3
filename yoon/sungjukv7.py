@@ -18,8 +18,6 @@ def displayMenu():
     return menu
 
 # 성적 데이터 관련 변수 선언
-
-
 def readSungJuk():
     sj = []
     cnt = getTotalSungJuk()
@@ -28,7 +26,6 @@ def readSungJuk():
     sj.append(int(input(f'{cnt}번 학생 영어는? ')))
     sj.append(int(input(f'{cnt}번 학생 수학은? ')))
     return sj
-
 
 # 입력받은 성적 데이터를 처리하고 테이블에 저장
 def addSungJuk(sj):
@@ -70,7 +67,6 @@ def getTotalSungJuk():
     conn.close()
     return cnt
 
-
 # 입력한 성적데이터에 대해 성적첯리하는 함수
 def computeSungJuk(sj):
     sj.append(sj[1] + sj[2] + sj[3])
@@ -82,7 +78,6 @@ def computeSungJuk(sj):
           '양' if (sj[5] >= 60) else '가'
     sj.append(grd)
     return sj
-
 
 # 처리된 성적데이터를 테이블에 저장
 def newSungJuk(sj):

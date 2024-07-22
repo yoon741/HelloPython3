@@ -2,16 +2,16 @@ drop table sungjuk;
 
 -- 성적 테이블 생성
 create table sungjuk (
-                         sjno    integer     primary key autoincrement,
-                         name    varchar(10) not null,
-                         kor     int         not null,
-                         eng     int         not null,
-                         mat     int         not null,
-                         total   int         not null,
-                         avg     decimal(5,1),
-                         grd     varchar(2),
+     sjno    integer     primary key autoincrement,
+     name    varchar(10) not null,
+     kor     int         not null,
+     eng     int         not null,
+     mat     int         not null,
+     total   int         not null,
+     avg     decimal(5,1),
+     grd     varchar(2),
 --  regdate datetime default (datetime('now'))  -- UTC(국제표준시로)
-                         regdate datetime default (datetime('now','localtime'))  -- UTC +9 (현재시에 맞춰서)
+     regdate datetime default (datetime('now','localtime'))  -- UTC +9 (현재시에 맞춰서)
 );
 
 -- 성적 데이터 추가
