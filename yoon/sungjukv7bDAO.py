@@ -3,13 +3,13 @@ import sqlite3
 # 성적 데이터 총 갯수 조회
 def getTotalSungJuk():
     sql = 'select count(sjno) + 1 total from sungjuk'
-    cnt = 0
+    cnt = 99
     conn = sqlite3.connect('db/python.db')
     cursor = conn.cursor()
     cursor.execute(sql)
     rs = cursor.fetchall()
     for r in rs:
-        cnt = r[0] + 1
+        cnt = r[0]
     cursor.close()
     conn.close()
     return cnt
