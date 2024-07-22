@@ -43,13 +43,19 @@ def showSungJuk():
 # 학생 이름으로 성적데이터 조회 후 출력
 def showOneSungJuk():
     # name = input('조회할 학생 이름은?')
-    sjno = input('조회할 학생 번호은?')
+    sjno = input('조회 할 학생 번호은?')
     result = '데이터가 존재하지 않습니다!'
     sj = sjv7dao.readOneSungJuk(sjno)
     if sj:      # 조회한 데이터가 존재한다면
         result = (f'번호: {sj[0]}, 이름: {sj[1]}, 국어: {sj[2]}, 영어: {sj[3]}, 수학: {sj[4]} \n'
                   f'총점: {sj[5]}, 평균: {sj[6]:.1f}, 학점: {sj[7]}, 등록일: {sj[8]}')
     print(result)
+
+# 학생 번호를 입력받아 성적데이터 삭제
+def removeSungJuk():
+    sjno = input('삭제할 학생 번호는?')
+    sjv7dao.deleteSungJuk(sjno)
+
 
 # 입력한 성적데이터에 대해 성적처리하는 함수
 def computeSungJuk(sj):
