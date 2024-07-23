@@ -39,16 +39,33 @@ class SungJukDAO:
 
         rs = cursor.fetchall()
         for r in rs:   # 조회결과를 SungJuk 객체에 개별 저장
-            sj = SungJuk(r[1],r[2],r[2],r[2])
+            sj = SungJuk(r[1],r[2],r[3],r[4])
             sj.sjno = r[0]
             sj.regdate = r[5]
             sjs.append(sj)
 
         SungJukDAO._dis_conn(conn, cursor)
-        return rs
+        return sjs
 
-    def selectone_sungjuk(self):
-        pass
+    @staticmethod
+    def selectone_sungjuk(sjno):
+        sql = 'select *  from sungjuk where sjno = ?'
+        conn, cursor = SungJukDAO._make_conn()
+        params = (sjno,)
+        cursor.execute(sql, params)
+        rs = cursor.fetchone()
+        if rs:
+            sj = SungJuk(rs[1],rs[2],rs[3],rs[4])
+            sj.sjno = rs[0]
+            sj.tot = rs[5]
+            sj.avg = rs[6]
+            sj.grd = rs[7]
+            sj.regdate = rs[8]
+        else:
+            sj = None
+
+        SungJukDAO._dis_conn(conn, cursor)
+        return sj
 
     def update_sungjuk(self):
         pass
