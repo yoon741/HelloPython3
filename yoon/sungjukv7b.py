@@ -51,11 +51,6 @@ def showOneSungJuk():
                   f'총점: {sj[5]}, 평균: {sj[6]:.1f}, 학점: {sj[7]}, 등록일: {sj[8]}')
     print(result)
 
-# 학생 번호를 입력받아 성적데이터 삭제
-def removeSungJuk():
-    sjno = input('삭제할 학생 번호는?')
-    sjv7dao.deleteSungJuk(sjno)
-
 
 # 입력한 성적데이터에 대해 성적처리하는 함수
 def computeSungJuk(sj):
@@ -68,3 +63,30 @@ def computeSungJuk(sj):
           '양' if (sj[5] >= 60) else '가'
     sj.append(grd)
     return sj
+
+# 학생 번호를 입력받아 성적데이터 삭제
+def removeSungJuk():
+    sjno = input('삭제할 학생 번호는?')
+    sjv7dao.deleteSungJuk(sjno)
+
+# 학생번호를 입력받아 데이터 수정
+def modifySungJuk():
+    sjno = input('수정할 학생 번호는?')
+    sj = sjv7dao.readOneSungJuk(sjno)
+
+    if sj:    # 수정할 데이터가 존재한다면
+        sj = readAgainSungJuk(sj)
+        sjv7dao.updateSungJuk(sj)
+    else:
+        print('수정할 데이터가 존재하지 않아요!')
+
+# 기존 성적 데이터를 확인하면서 수정할 성적데이터 재입력
+def readAgainSungJuk(sj):
+    nsj = []
+    nsj.append(sj[1])   # nsj[0] - 학생이름
+    nsj.append(int(input(f'({sj[1]}) 학생의 새로운 국어는? ({sj[2]})')))
+    nsj.append(int(input(f'({sj[1]}) 학생의 새로운 영어는? ({sj[3]})')))
+    nsj.append(int(input(f'({sj[1]}) 학생의 새로운 수학은? ({sj[4]})')))
+    computeSungJuk(nsj)
+    nsj.append(sj[0])   # nsj[7] - 학생번호
+    return nsj
