@@ -16,7 +16,7 @@ from yoon.oop.services import SungJukService as sjv8
 # 메뉴 출력 및 메뉴별 처리
 while True:
     # 메뉴 입력 받음
-    menu = sjv8.display_manu()
+    menu = sjv8.display_menu()
 
     if menu == '1':
         print('성적 데이터 추가')
