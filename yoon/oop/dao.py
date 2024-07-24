@@ -8,6 +8,7 @@ host = '3.34.51.50'
 dbname = 'clouds2024'
 user = 'clouds2024'
 passwd = 'clouds2024'
+# -----------------------
 
 # 성적 DAO 클래스
 class SungJukDAO:
@@ -117,4 +118,84 @@ class SungJukDAO:
         cnt = cursor.rowcount
         conn.commit()
         SungJukDAO._dis_conn(conn, cursor)
+        return cnt
+
+
+
+# 사원 DAO 클래스
+class EmpDAO:
+    @staticmethod
+    def _make_conn():  # 함수앞에 언더바를 붙이면 클래스 외부에서만 사용하고 내부에서 사용 불가능
+        conn = pymysql.connect(host=host, user=user,
+                               password=passwd, database=dbname, charset='utf8')
+        cursor = conn.cursor()
+        return conn, cursor
+
+        # 데이터베이스 연결객체와 커서 종료
+
+    @staticmethod
+    def _dis_conn(conn,cursor):
+        cursor.close()
+        conn.close()
+
+    # 사원 데이터 저장
+    @staticmethod
+    def insert_emp(emp):
+        sql = 'insert into emp values'\
+               '(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+        conn, cursor = EmpDAO._make_conn()
+        params = (emp.empid, emp.fname, emp.lname, emp.email,emp.phone,
+                  emp.hdate,emp.jobid,emp.sal, emp.comm, emp.mgrid,emp.deptid)
+        cursor.execute(sql, params)
+        cnt = cursor.rowcount
+        conn.commit()
+        EmpDAO._dis_conn(conn,cursor)
+        return cnt
+
+
+    @staticmethod
+    def select_emp():
+        sql = 'select empid, fname, email, jobid, deptid from emp'
+        conn, cursor = EmpDAO._make_conn()
+        cursor.execute(sql)
+
+        rs = cursor.fetchall()
+        for r in rs:
+            emp = Employee()
+
+
+        EmpDAO._dis_conn(conn,cursor)
+        return emps
+
+    @staticmethod
+    def selectone_emp(empid):
+        sql = 'select *  from emp where empid = %s'
+        conn, cursor = EmpDAO._make_conn()
+        params = (empid,)
+        cursor.execute(sql, params)
+        emp = cursor.fetchone()
+        EmpDAO._dis_conn(conn,cursor)
+        return emp
+
+    @staticmethod
+    def update_emp():
+        sql = 'update emp set email=%s, phone=%s, jobid=%s, sal=%s, ' \
+              'comm=%s, mgrid=%s, deptid=%s where empid = %s'
+        conn, cursor = EmpDAO._make_conn()
+        params = (emp[3], emp[4],emp[6], emp[7], emp[8],emp[9],emp[10],emp[0])
+        cursor.execute(sql, params)
+        cnt = cursor.rowcount
+        conn.commit()
+        EmpDAO._dis_conn(conn,cursor)
+        return cnt
+
+    @staticmethod
+    def delete_emp(empid):
+        sql = 'delete from emp where empid = %s'
+        conn, cursor = EmpDAO._make_conn()
+        params = (empid,)
+        cursor.execute(sql, params)
+        cnt = cursor.rowcount
+        conn.commit()
+        EmpDAO._dis_conn(conn,cursor)
         return cnt

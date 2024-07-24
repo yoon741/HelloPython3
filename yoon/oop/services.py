@@ -1,5 +1,6 @@
-from yoon.oop.models import SungJuk
+from yoon.oop.models import SungJuk, Employee
 from yoon.oop.dao import SungJukDAO as sjdao
+from yoon.oop.dao import EmpDAO as empdao
 
 # 성적 서비스 클래스
 class SungJukService:
@@ -7,7 +8,7 @@ class SungJukService:
     @staticmethod # 정적static 메서드 : 객체화 없이 바로 사용가능한 메서드
                   #     정적 메서드로 정의된 함수는 self 매개변수 지정 X
                   # 호출방법 : 클래스명.함수명
-    def display_manu():
+    def display_menu():
         main_menu = '''
         ==============================
              성적 프로그램 v8
@@ -123,3 +124,112 @@ class SungJukService:
         sjno = input('삭제할 학생 번호는?')
         cnt = sjdao.delete_sungjuk(sjno)
         print(f'{cnt} 건 데이터가 삭제됨!!')
+
+
+# 사원 서비스 클래스
+class EmpService:
+    @staticmethod
+    def display_manu():
+     main_menu = '''
+    ==============================
+         - 사원 관리 프로그램 -
+    ==============================
+        1. 사원 데이터 추가 
+        2. 사원 데이터 조회 
+        3. 사원 데이터 상세조회
+        4. 사원 데이터 수정
+        5. 사원 데이터 삭제
+        0. 사원 데이터 종료
+    ==============================
+    '''
+     print(main_menu, end='')
+     menu = input('=> 메뉴를 선택하세요 : ')
+     return menu
+
+    @staticmethod
+    def read_emp():
+        empid = input(f'사원 번호는? ')
+        fname = input(f'사원 이름은? ')
+        lname = input(f'사원 성은? ')
+        email = input(f'사원 이메일은? ')
+        phone = input(f'사원 전화번호는? ')
+        hdate = input(f'사원 입사일은? ')
+        jobid = input(f'사원 직책은? ')
+        sal = input(f'사원 급여는? ')
+        comm = input(f'사원 수당은? (없으면 0)')
+        mgrid = input(f'매니저 번호는? (없으면 0)')
+        deptid = input(f'사원 부서번호는? (없으면 0)')
+        return Employee(empid, fname, lname,email, phone,
+                        hdate, jobid, sal, comm, mgrid, deptid)
+
+    @staticmethod
+    def add_emp():
+        emp = EmpService.read_emp()
+        emp.comm = float(emp.comm) if emp.comm != '0' else None
+        emp.mgrid = int(emp.mgrid) if emp.mgrid != '0' else None
+        emp.deptid = int(emp.deptid) if emp.deptid != '0' else None
+        cnt = empdao.insert_emp(emp)
+        result = f'{cnt} 건의 데이터가 추가됨!!'
+        print(result)
+
+    @staticmethod
+    def show_emp():
+        result = ''
+        emps = EmpService.read_emp()
+
+        for emp in emps:
+            result += f'사원번호: {emp.empid}, 이름: {emp.fname}, 이메일: {emp.email}, 직책: {emp.jobid}, 부서번호: {emp.deptid}\n'
+        print(result)
+
+    @staticmethod
+    def showone_emp():
+        empid = input('조회할 사원 번호은?')
+        result = '데이터가 존재하지 않습니다!'
+        emp = EmpService.read_emp(empid)
+
+        if emp:      # 조회한 데이터가 존재한다면
+            result = (f'사원번호: {emp.empid}, 이름: {emp.fname}, 성: {emp.lname}, 이메일: {emp.email}, 전화번호: {emp.phone} \n'
+                      f'입사일: {emp.hdate}, 직책: {emp.jobid}, 월급: {emp.sal}, 커미션: {emp.comm}, 상사: {emp.mgrid}, 부서번호: {emp.deptid}')
+
+        print(result)
+
+    @staticmethod
+    def modify_emp():
+        empid = input('수정할 사원 번호은?')
+        emp = empdao.readOneEmp(empid)
+        result = '수정할 데이터가 존재하지 않아요!'
+
+        if emp:
+            emp = readagain_emp(emp)
+            cnt = empdao.updateEmp(emp)
+            result = f'{cnt}건의 데이터가 수정됨!!'
+
+        print(result)
+
+    @staticmethod
+    def readagain_emp():
+        nemp = []
+        nemp.append(emp[0])
+        nemp.append(emp[1])
+        nemp.append(emp[2])
+        nemp.append(input(f'({emp[1]}) 수정할 사원의 이메일은? ({emp[3]})'))
+        nemp.append(input(f'({emp[1]}) 수정할 사원의 전화번호는? ({emp[4]})'))
+        nemp.append(emp[5])
+        nemp.append(input(f'({emp[1]}) 수정할 사원의 직책은? ({emp[6]})'))
+        nemp.append(input(f'({emp[1]}) 수정할 사원의 급여는? ({emp[7]})'))
+        nemp.append(input(f'({emp[1]}) 수정할 사원의 수당은? ({emp[8]}, 없으면 0)'))
+        nemp.append(input(f'({emp[1]}) 수정할 매니저의 번호는? ({emp[9]}, 없으면 0)'))
+        nemp.append(input(f'({emp[1]}) 수정할 사원의 부서번호는? ({emp[10]}, 없으면 0)'))
+        nemp[8] = float(nemp[8]) if nemp[8] != '0' else None
+        nemp[9] = int(nemp[9]) if nemp[9] != '0' else None
+        nemp[10] = int(nemp[10]) if nemp[10] != '0' else None
+        return nemp
+
+    @staticmethod
+    def remove_emp():
+        empid = input('삭제할 사원 번호은?')
+        result = '데이터가 존재하지 않아요!!'
+        cnt = empdao.deleteEmp(empid)
+        if cnt > 0:
+            result = f'{cnt}건의 데이터가 삭제됨!'
+        print(result)
