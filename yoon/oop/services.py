@@ -65,30 +65,29 @@ class SungJukService:
         result = '데이터가 존재하지 않습니다!'
         sj = sjdao.selectone_sungjuk(sjno)
         if sj:      # 조회한 데이터가 존재한다면
-            result = f'번호: {sj.sjno}, 이름: {sj.name}, 국어: {sj.kor}, 영어: {sj.eng}, 수학: {sj.mat} \n'
-            f'총점: {sj.tot}, 평균: {sj.avg:.1f}, 학점: {sj.grd}, 등록일: {sj.regdate}'
+            result = f'번호: {sj.sjno}, 이름: {sj.name}, 국어: {sj.kor}, 영어: {sj.eng}, 수학: {sj.mat} '\
+                      f'총점: {sj.tot}, 평균: {sj.avg:.1f}, 학점: {sj.grd}, 등록일: {sj.regdate}\n'
         print(result)
 
     @staticmethod
     def modify_sungjuk():
         sjno = input('수정할 학생 번호는?')
-        sj = sjdao.readagain_sungjuk(sjno)
+        sj = sjdao.selectone_sungjuk(sjno)
+        result = '수정할 데이터가 존재하지 않아요!'
 
         if sj:    # 수정할 데이터가 존재한다면
-            sj = sjdao.readagain_sungjuk(sj)
-            sjdao.update_sungjuk(sj)
-        else:
-            print('수정할 데이터가 존재하지 않아요!')
+            sj = SungJukService.readagain_sungjuk(sj)
+            cnt = sjdao.update_sungjuk(sj)
+            result = f'{cnt}건의 데이터 수정됨!'
 
-
-    def readagain_sungjuk(self, sj):
-        nsj = []
-        nsj.append(sj.name)
-        nsj.append(int(input(f'({sj.name}) 학생의 새로운 국어는? ({sj.kor})')))
-        nsj.append(int(input(f'({sj.name}) 학생의 새로운 영어는? ({sj.eng})')))
-        nsj.append(int(input(f'({sj.name}) 학생의 새로운 수학은? ({sj.mat})')))
-        sjdao.compute_sungjuk(nsj)
-        nsj.append(sj.sjno)
+    @staticmethod
+    def readagain_sungjuk(sj):
+        nsj = SungJuk(sj.name, None, None,None)     # 클래스(객체지향 기반)
+        nsj.kor = int(input(f'({sj.name}) 학생의 새로운 국어는? ({sj.kor})'))
+        nsj.eng = int(input(f'({sj.name}) 학생의 새로운 영어는? ({sj.eng})'))
+        nsj.mat = int(input(f'({sj.name}) 학생의 새로운 수학은? ({sj.mat})'))
+        SungJukService.compute_sungjuk(nsj)
+        nsj.sjno = sj.sjno
         return nsj
 
     @staticmethod

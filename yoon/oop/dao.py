@@ -72,7 +72,7 @@ class SungJukDAO:
         sql = 'update sungjuk set kor=?, eng=?, mat=?, total=?, avg=?, grd=? \
                 where sjno = ?'
         conn, cursor = SungJukDAO._make_conn()
-        params = (sj[1], sj[2],sj[3],sj[4],sj[5],sj[6],sj[7])
+        params = (sj.kor, sj.eng,sj.mat,sj.tot,sj.avg,sj.grd,sj.sjno)
         cursor.execute(sql, params)
         cnt = cursor.rowcount
         conn.commit()
