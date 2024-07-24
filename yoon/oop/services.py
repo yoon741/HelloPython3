@@ -26,6 +26,10 @@ class SungJukService:
 
     @staticmethod
     def read_sungjuk():
+        """
+        성적데이터 변수 선언
+        :return: 성적 객체 반환
+        """
         name = input(f'새로운 학생 이름은? ')
         kor = int(input(f'새로운 학생 국어는? '))
         eng = int(input(f'새로운 학생 영어는? '))
@@ -34,6 +38,9 @@ class SungJukService:
 
     @staticmethod
     def add_sungjuk():
+        """
+        입력받은 성적 데이터를 처리하고 테이블에 저장 및 문구 출력
+        """
         sj = SungJukService.read_sungjuk()
         SungJukService.compute_sungjuk(sj)
         cnt = sjdao.insert_sungjuk(sj)
@@ -42,6 +49,10 @@ class SungJukService:
 
     @staticmethod
     def compute_sungjuk(sj):
+        """
+        입력받은 성적데이터를 학점처리
+        :param sj: 학점처리하는데 사용할 성적데이터
+        """
         sj.tot = sj.kor + sj.eng + sj.mat
         sj.avg = sj.tot / 3
         sj.grd = '가'
@@ -52,6 +63,9 @@ class SungJukService:
 
     @staticmethod
     def show_sungjuk():
+        """
+        테이블에 저장된 성적 데이터들 중 간단한 데이터만 출력
+        """
         result = ''
         sjs = sjdao.select_sungjuk()
         for sj in sjs:
@@ -61,6 +75,9 @@ class SungJukService:
 
     @staticmethod
     def showone_sungjuk():
+        """
+        학생번호로 성적데이터 읽어온 후 출력
+        """
         sjno = input('조회 할 학생 번호은?')
         result = '데이터가 존재하지 않습니다!'
         sj = sjdao.selectone_sungjuk(sjno)
@@ -71,6 +88,9 @@ class SungJukService:
 
     @staticmethod
     def modify_sungjuk():
+        """
+        학생번호를 입력받아 성적데이터 수정
+        """
         sjno = input('수정할 학생 번호는?')
         sj = sjdao.selectone_sungjuk(sjno)
         result = '수정할 데이터가 존재하지 않아요!'
@@ -82,6 +102,11 @@ class SungJukService:
 
     @staticmethod
     def readagain_sungjuk(sj):
+        """
+        저장된 성적 데이터 확인 및 수정할 성적데이터 입력
+        :param sj: 저장된 성적데이터 확인
+        :return: 새로운 성적데이터 반환
+        """
         nsj = SungJuk(sj.name, None, None,None)     # 클래스(객체지향 기반)
         nsj.kor = int(input(f'({sj.name}) 학생의 새로운 국어는? ({sj.kor})'))
         nsj.eng = int(input(f'({sj.name}) 학생의 새로운 영어는? ({sj.eng})'))
@@ -92,6 +117,9 @@ class SungJukService:
 
     @staticmethod
     def remove_sungjuk():
+        """
+        학생번호 입력 성적데이터 삭제
+        """
         sjno = input('삭제할 학생 번호는?')
         cnt = sjdao.delete_sungjuk(sjno)
         print(f'{cnt} 건 데이터가 삭제됨!!')
