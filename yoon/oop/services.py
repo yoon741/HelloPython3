@@ -199,40 +199,42 @@ class EmpService:
     @staticmethod
     def modify_emp():
         empid = input('수정할 사원 번호은?')
-        emp = EmpService.selectone_emp(empid)
+        emp = empdao.selectone_emp(empid)
         result = '수정할 데이터가 존재하지 않아요!'
 
         if emp:
-            emp = readagain_emp(emp)
-            cnt = empdao.updateEmp(emp)
+            emp = EmpService.readagain_emp(emp)
+            cnt = empdao.update_emp(emp)
             result = f'{cnt}건의 데이터가 수정됨!!'
 
         print(result)
 
     @staticmethod
-    def readagain_emp():
-        nemp = []
-        nemp.append(emp[0])
-        nemp.append(emp[1])
-        nemp.append(emp[2])
-        nemp.append(input(f'({emp[1]}) 수정할 사원의 이메일은? ({emp[3]})'))
-        nemp.append(input(f'({emp[1]}) 수정할 사원의 전화번호는? ({emp[4]})'))
-        nemp.append(emp[5])
-        nemp.append(input(f'({emp[1]}) 수정할 사원의 직책은? ({emp[6]})'))
-        nemp.append(input(f'({emp[1]}) 수정할 사원의 급여는? ({emp[7]})'))
-        nemp.append(input(f'({emp[1]}) 수정할 사원의 수당은? ({emp[8]}, 없으면 0)'))
-        nemp.append(input(f'({emp[1]}) 수정할 매니저의 번호는? ({emp[9]}, 없으면 0)'))
-        nemp.append(input(f'({emp[1]}) 수정할 사원의 부서번호는? ({emp[10]}, 없으면 0)'))
-        nemp[8] = float(nemp[8]) if nemp[8] != '0' else None
-        nemp[9] = int(nemp[9]) if nemp[9] != '0' else None
-        nemp[10] = int(nemp[10]) if nemp[10] != '0' else None
+    def readagain_emp(emp):
+        nemp = Employee(emp.empid,emp.fname,emp.lname,None,None,emp.hdate,
+                        None,None,None,None,None)
+        nemp.empid = emp.empid
+        nemp.fname = emp.fname
+        nemp.lname = emp.lname
+        nemp.email = input(f'({emp.fname}) 사원의 수정할 이메일은? ({emp.email})')
+        nemp.phone = input(f'({emp.fname}) 사원의 수정할 전화번호는? ({emp.phone})')
+        nemp.hdate = emp.hdate
+        nemp.jobid = input(f'({emp.fname}) 사원의 수정할 직책은? ({emp.jobid})')
+        nemp.sal = input(f'({emp.fname}) 사원의 수정할 급여는? ({emp.sal})')
+        nemp.comm = input(f'({emp.fname}) 사원의 수정할 수당은? ({emp.comm}, 없으면 0)')
+        nemp.mgrid = input(f'({emp.fname}) 사원의 수정할 번호는? ({emp.mgrid}, 없으면 0)')
+        nemp.deptid = input(f'({emp.fname}) 사원의 수정할 부서번호는? ({emp.deptid}, 없으면 0)')
+        nemp.comm = float(nemp.comm) if nemp.comm != '0' else None
+        nemp.mgrid = int(nemp.mgrid) if nemp.mgrid != '0' else None
+        nemp.deptid = int(nemp.deptid) if nemp.deptid != '0' else None
+        nemp.empid = emp.empid
         return nemp
 
     @staticmethod
     def remove_emp():
         empid = input('삭제할 사원 번호은?')
         result = '데이터가 존재하지 않아요!!'
-        cnt = empdao.deleteEmp(empid)
+        cnt = empdao.delete_emp(empid)
         if cnt > 0:
             result = f'{cnt}건의 데이터가 삭제됨!'
         print(result)

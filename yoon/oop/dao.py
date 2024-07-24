@@ -178,19 +178,19 @@ class EmpDAO:
         cursor.execute(sql, params)
         rs = cursor.fetchone()
         if rs:
-            emp = Employee(rs[0],rs[1],rs[2],rs[3],rs[4],rs[5],rs[6],rs[7],rs[8],rs[9],rs[10])
+            emp = Employee(rs[0],rs[1],rs[2],rs[3],rs[4],rs[5],
+                           rs[6],rs[7],rs[8],rs[9],rs[10])
         else:
             emp = None
-
         EmpDAO._dis_conn(conn,cursor)
         return emp
 
     @staticmethod
-    def update_emp():
+    def update_emp(emp):
         sql = 'update emp set email=%s, phone=%s, jobid=%s, sal=%s, ' \
               'comm=%s, mgrid=%s, deptid=%s where empid = %s'
         conn, cursor = EmpDAO._make_conn()
-        params = (emp[3], emp[4],emp[6], emp[7], emp[8],emp[9],emp[10],emp[0])
+        params = (emp.email, emp.phone,emp.jobid, emp.sal, emp.comm,emp.mgrid,emp.deptid,emp.empid)
         cursor.execute(sql, params)
         cnt = cursor.rowcount
         conn.commit()
