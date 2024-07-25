@@ -211,24 +211,38 @@ class EmpService:
 
     @staticmethod
     def readagain_emp(emp):
-        nemp = Employee(emp.empid,emp.fname,emp.lname,None,None,emp.hdate,
-                        None,None,None,None,None)
-        nemp.empid = emp.empid
-        nemp.fname = emp.fname
-        nemp.lname = emp.lname
-        nemp.email = input(f'({emp.fname}) 사원의 수정할 이메일은? ({emp.email})')
-        nemp.phone = input(f'({emp.fname}) 사원의 수정할 전화번호는? ({emp.phone})')
-        nemp.hdate = emp.hdate
-        nemp.jobid = input(f'({emp.fname}) 사원의 수정할 직책은? ({emp.jobid})')
-        nemp.sal = input(f'({emp.fname}) 사원의 수정할 급여는? ({emp.sal})')
-        nemp.comm = input(f'({emp.fname}) 사원의 수정할 수당은? ({emp.comm}, 없으면 0)')
-        nemp.mgrid = input(f'({emp.fname}) 사원의 수정할 번호는? ({emp.mgrid}, 없으면 0)')
-        nemp.deptid = input(f'({emp.fname}) 사원의 수정할 부서번호는? ({emp.deptid}, 없으면 0)')
-        nemp.comm = float(nemp.comm) if nemp.comm != '0' else None
-        nemp.mgrid = int(nemp.mgrid) if nemp.mgrid != '0' else None
-        nemp.deptid = int(nemp.deptid) if nemp.deptid != '0' else None
-        nemp.empid = emp.empid
-        return nemp
+        # nemp = Employee(emp.empid,emp.fname,emp.lname,None,None,emp.hdate,
+        #                 None,None,None,None,None)
+        # nemp.empid = emp.empid
+        # nemp.fname = emp.fname
+        # nemp.lname = emp.lname
+        # nemp.email = input(f'({emp.fname}) 사원의 수정할 이메일은? ({emp.email})')
+        # nemp.phone = input(f'({emp.fname}) 사원의 수정할 전화번호는? ({emp.phone})')
+        # nemp.hdate = emp.hdate
+        # nemp.jobid = input(f'({emp.fname}) 사원의 수정할 직책은? ({emp.jobid})')
+        # nemp.sal = input(f'({emp.fname}) 사원의 수정할 급여는? ({emp.sal})')
+        # nemp.comm = input(f'({emp.fname}) 사원의 수정할 수당은? ({emp.comm}, 없으면 0)')
+        # nemp.mgrid = input(f'({emp.fname}) 사원의 수정할 번호는? ({emp.mgrid}, 없으면 0)')
+        # nemp.deptid = input(f'({emp.fname}) 사원의 수정할 부서번호는? ({emp.deptid}, 없으면 0)')
+        # nemp.comm = float(nemp.comm) if nemp.comm != '0' else None
+        # nemp.mgrid = int(nemp.mgrid) if nemp.mgrid != '0' else None
+        # nemp.deptid = int(nemp.deptid) if nemp.deptid != '0' else None
+        # nemp.empid = emp.empid
+        # return nemp
+
+        emp.email = input(f'({emp.fname}) 사원의 수정할 이메일은? ({emp.email})')
+        emp.phone = input(f'({emp.fname}) 사원의 수정할 전화번호는? ({emp.phone})')
+        emp.jobid = input(f'({emp.fname}) 사원의 수정할 직책은? ({emp.jobid})')
+        emp.sal = input(f'({emp.fname}) 사원의 수정할 급여는? ({emp.sal})')
+        emp.comm = input(f'({emp.fname}) 사원의 수정할 수당은? ({emp.comm}, 없으면 0)')
+        emp.mgrid = input(f'({emp.fname}) 사원의 수정할 번호는? ({emp.mgrid}, 없으면 0)')
+        emp.deptid = input(f'({emp.fname}) 사원의 수정할 부서번호는? ({emp.deptid}, 없으면 0)')
+        emp.comm = float(emp.comm) if emp.comm != '0' else None
+        emp.mgrid = int(emp.mgrid) if emp.mgrid != '0' else None
+        emp.deptid = int(emp.deptid) if emp.deptid != '0' else None
+        return Employee(emp.empid,emp.fname,emp.lname,emp.email,emp.phone,
+                        emp.hdate,emp.jobid,emp.sal,emp.comm,emp.mgrid,emp.deptid)
+    
 
     @staticmethod
     def remove_emp():
