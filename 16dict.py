@@ -82,8 +82,8 @@ print(mids)
 for k, v in mids.items():
     print(f'{k} : {v}')
 
-for k, v in mids.items():
-    print(k, '\t :  ', v)
+for k, v in mids.items():  # \t tap역할 정렬할수 있음
+     print(k, '\t :  ', v)
 
 
 # 수학시험 프로그램 p.37
